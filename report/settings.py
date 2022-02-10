@@ -119,7 +119,7 @@ USE_I18N = True
 USE_TZ = True
 
 REST_FRAMEWORK = {
-    'DATETIME_FORMAT': '%d/%m/%Y %H:%M:%S',
+    'DATETIME_FORMAT': '%d/%m/%Y',
 }
 
 # Static files (CSS, JavaScript, Images)

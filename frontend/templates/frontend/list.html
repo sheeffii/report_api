@@ -120,18 +120,15 @@
 		function buildList(){
 			var wrapper = document.getElementById('list-wrapper')
 			
-
-
 			var url = 'http://127.0.0.1:8000/api/task-list/'
 
 			fetch(url)
 			.then((response) => response.json())
 			.then(function(data){
-				console.log('Data:', data)
+				
 
 				var list = data
 				for (var i in list){
-
 
 					try{
 						document.getElementById(`data-row-${i}`).remove()
@@ -139,14 +136,13 @@
                         
 					}
 			
-
- 
 					var item = `
 						<div id="data-row-${i}" class="task-wrapper flex-wrapper">
 							<div style="flex:7">
                                 <span class="title">${list[i].title}</span>
 							</div>
-                            <div></div>
+                            <div style="flex: 1.5;margin-top: 5px; font-size: 13px;;"><span class="created">${list[i].created}</span>
+							</div>
 							<div style="flex:.9">
 								<button class="btn btn-sm btn-outline-info edit">Edit </button>
 							</div>
@@ -154,7 +150,6 @@
 								<button class="btn btn-sm btn-outline-dark delete">-</button>
 							</div>
 						</div>
-
 					`
 					wrapper.innerHTML += item
 	
@@ -187,9 +182,7 @@
 						}
 					})(list[i]))
 
-
 				}
-
 
 			})
 		}
@@ -198,13 +191,12 @@
 		var form = document.getElementById('form-wrapper')
 		form.addEventListener('submit', function(e){
 			e.preventDefault()
-			console.log('Form submitted')
+			
 			var url = 'http://127.0.0.1:8000/api/task-create/'
 			if (activeItem != null){
 				var url = `http://127.0.0.1:8000/api/task-update/${activeItem.id}/`
 				activeItem = null
 			}
-
 
 
 			var title = document.getElementById('title').value
@@ -224,16 +216,13 @@
 
 
 
-
 		function editItem(item){
-			console.log('Item clicked:', item)
 			activeItem = item
 			document.getElementById('title').value = activeItem.title
 		}
 
 
 		function deleteItem(item){
-			console.log('Delete clicked')
 			fetch(`http://127.0.0.1:8000/api/task-delete/${item.id}/`, {
 				method:'DELETE', 
 				headers:{
@@ -245,10 +234,6 @@
 			})
 		}
 
-		
-
-
 	</script>
-
 </body>
 </html>
